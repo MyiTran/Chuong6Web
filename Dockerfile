@@ -1,5 +1,5 @@
 # ---------- Stage 1: Build (compile .java -> WEB-INF/classes) ----------
-FROM eclipse-temurin:24-jdk AS builder
+FROM eclipse-temurin:21-jdk AS builder
 WORKDIR /build
 
 # Cài curl (để tải jar)
@@ -37,8 +37,8 @@ RUN mkdir -p /build/webapp/WEB-INF/classes && \
             -d /build/webapp/WEB-INF/classes @/tmp/sources.list ; \
     fi
 
-# ---------- Stage 2: Runtime (Tomcat 11, JDK 24) ----------
-FROM tomcat:11.0-jdk24-temurin
+# ---------- Stage 2: Runtime (Tomcat 11) ----------
+FROM tomcat:11.0-jdk21-temurin
 
 # Xoá ROOT mặc định
 RUN rm -rf /usr/local/tomcat/webapps/ROOT
